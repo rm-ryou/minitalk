@@ -6,7 +6,7 @@
 /*   By: rmoriya <rmoriya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 23:23:45 by rmoriya           #+#    #+#             */
-/*   Updated: 2022/01/29 16:46:45 by rmoriya          ###   ########.fr       */
+/*   Updated: 2022/05/18 15:40:18 by rmoriya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <limits.h>
 # include <stdio.h>
 
 // part_1

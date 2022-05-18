@@ -6,7 +6,7 @@
 /*   By: rmoriya <rmoriya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 21:17:36 by rmoriya           #+#    #+#             */
-/*   Updated: 2022/05/17 16:31:06 by rmoriya          ###   ########.fr       */
+/*   Updated: 2022/05/18 15:25:16 by rmoriya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,5 @@ typedef struct s_signal
 	u_int8_t				shift_index;
 	u_int8_t				res;
 }	t_signal;
-/*
-typedef struct s_signal
-{
-	uint8_t	res;
-	int		shift_index;
-}	t_signal;*/
 
 #endif

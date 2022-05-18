@@ -6,25 +6,19 @@
 /*   By: rmoriya <rmoriya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 21:16:50 by rmoriya           #+#    #+#             */
-/*   Updated: 2022/05/17 16:22:37 by rmoriya          ###   ########.fr       */
+/*   Updated: 2022/05/18 15:42:50 by rmoriya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-int	put_message(char *s)
+static int	put_message(char *s)
 {
 	ft_putendl_fd(s, 1);
 	return (1);
 }
 
-void	error_exit(char *s)
-{
-	ft_putendl_fd(s, 1);
-	exit(1);
-}
-
-void	send_byte(pid_t pid, char byte)
+static int	send_bit(pid_t pid, char byte)
 {
 	int			kill_ret;
 	u_int8_t	counter;
@@ -37,25 +31,28 @@ void	send_byte(pid_t pid, char byte)
 		else
 			kill_ret = kill(pid, SIGUSR2);
 		if (kill_ret == -1)
-			error_exit("pid_number is wrong");
+			return (1);
 		counter += 1;
 		usleep(300);
 	}
+	return (0);
 }
 
-void	handle_signal(pid_t pid, char *message)
+static int	send_char(pid_t pid, char *message)
 {
 	size_t	i;
 
 	i = 0;
 	while (message[i] != '\0')
 	{
-		send_byte(pid, message[i]);
+		if (send_bit(pid, message[i]))
+			return (1);
 		i++;
 	}
+	return (0);
 }
 
-pid_t	get_pid(char *pid_str)
+static pid_t	check_pid(char *pid_str)
 {
 	size_t	i;
 
@@ -63,7 +60,7 @@ pid_t	get_pid(char *pid_str)
 	while (pid_str[i] != '\0')
 	{
 		if ((pid_str[i] < '0' || pid_str[i] > '9') || i >= 5)
-			error_exit("invalid pid_number");
+			return (0);
 		i++;
 	}
 	return (ft_atoi(pid_str));
@@ -74,12 +71,11 @@ int	main(int argc, char **argv)
 	pid_t	pid;
 
 	if (argc != 3)
-	//	return (put_message("usage : ./client [pid_number] [message]"));
-		error_exit("usage : ./client [pid_number] [message]");
-	pid = get_pid(argv[1]);
+		return (put_message("usage : ./client [pid_number] [message]"));
+	pid = check_pid(argv[1]);
 	if (pid == 0)
-	//	return (put_message("pid_number is wrong"));
-		error_exit("pid_number is wrong");
-	handle_signal(pid, argv[2]);
+		return (put_message("pid_number is wrong"));
+	if (send_char(pid, argv[2]))
+		return (put_message("pid_number is wrong"));
 	return (0);
 }

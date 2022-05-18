@@ -6,7 +6,7 @@
 /*   By: rmoriya <rmoriya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 21:16:58 by rmoriya           #+#    #+#             */
-/*   Updated: 2022/05/17 16:31:01 by rmoriya          ###   ########.fr       */
+/*   Updated: 2022/05/18 15:41:50 by rmoriya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	signal_receive(int signal)
 	g_signal.signum = signal;
 }
 
-void	get_char()
+static void	get_char()
 {
 	if (g_signal.signum == SIGUSR1)
 		g_signal.res |= (1 << g_signal.shift_index);
@@ -41,15 +41,11 @@ void	get_char()
 	g_signal.signum = 0;
 }
 
-void	init()
-{
-	g_signal.signum = 0;
-	g_signal.shift_index = 0;
-}
-
 int	main(void)
 {
-	init();
+	g_signal.signum = 0;
+	g_signal.res = 0;
+	g_signal.shift_index = 0;
 	print_pid();
 	signal(SIGUSR1, signal_receive);
 	signal(SIGUSR2, signal_receive);
