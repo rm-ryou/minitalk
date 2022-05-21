@@ -6,7 +6,7 @@
 #    By: rmoriya <rmoriya@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/03 16:29:25 by rmoriya           #+#    #+#              #
-#    Updated: 2022/05/17 16:14:58 by rmoriya          ###   ########.fr        #
+#    Updated: 2022/05/21 10:47:34 by rmoriya          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ OBJ_CLIENT = $(addprefix $(OBJS_DIR), $(notdir $(SRC_CLIENT:.c=.o)))
 all : $(NAME_SERVER) $(NAME_CLIENT)
 
 $(NAME_CLIENT) : $(OBJ_CLIENT)
-	make -C $(LIBFTDIR)
+	$(MAKE) -C $(LIBFTDIR)
 	$(CC) $(CFLAGS) -I $(INCLUDE) $(OBJ_CLIENT) $(LIBFTDIR)libft.a  -I $(INCLUDE) -o $@
 
 $(NAME_SERVER) : $(OBJ_SERVER)
