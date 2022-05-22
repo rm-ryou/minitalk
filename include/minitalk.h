@@ -6,7 +6,7 @@
 /*   By: rmoriya <rmoriya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 21:17:36 by rmoriya           #+#    #+#             */
-/*   Updated: 2022/05/18 15:25:16 by rmoriya          ###   ########.fr       */
+/*   Updated: 2022/05/23 05:52:37 by rmoriya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,11 @@
 # include <stdlib.h>
 # include <stdint.h>
 # include <unistd.h>
-#include <limits.h>
+# include <limits.h>
 # include <sys/types.h>
 # include "../libft/libft.h"
+
+# define SLEEP 300
 
 typedef struct s_signal
 {

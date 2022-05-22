@@ -6,7 +6,7 @@
 /*   By: rmoriya <rmoriya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 21:16:50 by rmoriya           #+#    #+#             */
-/*   Updated: 2022/05/18 15:42:50 by rmoriya          ###   ########.fr       */
+/*   Updated: 2022/05/23 05:52:32 by rmoriya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	send_bit(pid_t pid, char byte)
 	u_int8_t	counter;
 
 	counter = 0;
-	while (counter < 8)
+	while (counter < CHAR_BIT)
 	{
 		if ((byte >> counter) & 1)
 			kill_ret = kill(pid, SIGUSR1);
@@ -33,7 +33,7 @@ static int	send_bit(pid_t pid, char byte)
 		if (kill_ret == -1)
 			return (1);
 		counter += 1;
-		usleep(300);
+		usleep(SLEEP);
 	}
 	return (0);
 }
