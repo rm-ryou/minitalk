@@ -60,7 +60,7 @@ static pid_t	check_pid(char *pid_str)
 	while (pid_str[i] != '\0')
 	{
 		if ((pid_str[i] < '0' || pid_str[i] > '9') || i >= 5)
-			return (0);
+			return (1);
 		i++;
 	}
 	return (ft_atoi(pid_str));
