@@ -6,7 +6,7 @@
 /*   By: rmoriya <rmoriya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 21:16:50 by rmoriya           #+#    #+#             */
-/*   Updated: 2022/05/23 05:52:32 by rmoriya          ###   ########.fr       */
+/*   Updated: 2022/05/24 11:26:17 by rmoriya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static pid_t	check_pid(char *pid_str)
 	while (pid_str[i] != '\0')
 	{
 		if ((pid_str[i] < '0' || pid_str[i] > '9') || i >= 5)
-			return (1);
+			return (0);
 		i++;
 	}
 	return (ft_atoi(pid_str));
